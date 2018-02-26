@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/snowboy" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/snowboy/ding2.wav" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/snowboy/poketmon.mp3" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/snowboy/start.wav" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/snowboy/start2.wav" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/ai/kitt/snowboy/AppResCopy.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/ai/kitt/snowboy/Constants.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/ai/kitt/snowboy/SnowboyDetect.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/ai/kitt/snowboy/snowboy.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/ai/kitt/snowboy/snowboyJNI.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/choi/hai/MsgEnum.java" charset="ISO-8859-1" />
+  </component>
+</project>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+<sqlMap namespace="MYHOME">
+
+	<select id="selectQRInfo" resultClass="hmap">
+        select   com.*,
+                 svr.*
+        from    (
+                 select  max(ssid) as ssid,
+                         max(pwd) as pwd,
+                         max(l_server) as l_server,
+                         max(mqtt_port) as mqtt_port,
+                         max(mqtt_user) as mqtt_user,
+                         max(mqtt_pwd) as mqtt_pwd
+                 from    (
+                          SELECT if(cd_id = 'SSID', cd_val, null) as ssid,
+                                 if(cd_id = 'PWD', cd_val, null) as pwd,
+                                 if(cd_id = 'SERVER', cd_val, null) as l_server,
+                                 if(cd_id = 'PORT', cd_val, null) as mqtt_port,
+                                 if(cd_id = 'USERNAME', cd_val, null) as mqtt_user,
+                                 if(cd_id = 'PASSWORD', cd_val, null) as mqtt_pwd
+                          FROM com_code_dtl
+                          where com_cd in ('CM0001', 'CM0002')
+                         ) a
+                ) com,
+                (
+                 SELECT dev_id
+                 FROM   dev_mgmt
+                 where  dev_id = #identity#
+                ) svr
+	</select>
+
+	<select id="selectDeviceList" resultClass="hmap">
+		SELECT  dev_id
+		       ,dev_nm
+		       ,date_format(ifnull(lst_con_dtm,'00000000000000'),'%Y/%m/%d %H:%i:%S') as lst_con_dtm
+		       ,sub_topic
+		FROM   dev_mgmt
+		ORDER BY dev_nm
+	</select>
+
+	<select id="selectIrDataSingle" resultClass="hmap">
+	
+		select	raw_data_len as rawDataLen
+			   ,raw_data as rawData
+		from	ir_raw
+		where   rcntr_key = #key#	
+	
+	</select>
+
+	<select id="selectIrData" resultClass="hmap">
+	
+		select	raw_data_len as rawDataLen
+			   ,raw_data as rawData
+		from	ir_raw
+		where   rcntr_key in	
+		<iterate open="(" close=")" property="key" conjunction=",">
+		#key[]#
+		</iterate>
+	
+	</select>
+
+	<select id="selectCommandInfo" resultClass="hmap">
+	
+		select	a.action_nm as actionNm
+		       ,a.action_seq as actionSeq
+			   ,b.cmd_type as cmdType
+		       ,b.cmd_payload as cmdPayload
+		       ,b.cmd_seq
+		       ,d.dev_nm as devNm
+		       ,d.pub_topic as pubTopic
+		       ,d.sub_topic as subTopic
+		from	action_def a
+		       ,action_cmd b
+		       ,dev_mgmt d
+		where   a.action_id = (select z.action_id
+		                       from   action_cond_map z
+							   where  z.action_val = #actionVal#
+							   <isNotEmpty property="targetVal" prepend="AND">
+		                       z.target_val = #targetVal#
+							   </isNotEmpty>
+		                       )
+		and     a.action_seq = b.action_seq
+		and     b.dev_id = d.dev_id
+		order by b.cmd_seq		
+	
+	</select>
+
+	<delete id="deleteSong" parameterClass="hmap">
+		delete from songs
+	</delete>
+	
+    <insert id="insertSong" parameterClass="hmap">
+        INSERT INTO songs (
+        	 id
+        	,fname
+        	,title
+        	,artist
+        	,album
+        	,genre
+        	,type
+        ) VALUES (
+        	 #id#
+        	,#fname#
+        	,#title#
+        	,#artist#
+        	,#album#
+        	,#genre#
+        	,#type#
+        )    
+    </insert>
+
+
+	<select id="selectSong" resultClass="hmap">
+		select  id
+		       ,artist
+			   ,title
+		from 	songs
+		where	1=1
+		<isNotEmpty property="artist" prepend="AND">
+			artist = #artist#
+		</isNotEmpty>
+		<isNotEmpty property="title" prepend="AND">
+			title = #title#
+		</isNotEmpty>
+	</select>
+
+</sqlMap>

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.homeai";
+option java_outer_classname = "HomeAIService";
+option objc_class_prefix = "CHOIAI";
+
+package homeai;
+
+service AiService
+{
+  rpc say(AiServiceRequest) returns (AiServiceReply);
+}
+
+message AiServiceRequest {
+  string payload = 1;
+}
+
+message AiServiceReply {
+  string payload = 1;
+}

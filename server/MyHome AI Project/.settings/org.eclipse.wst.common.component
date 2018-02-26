@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="MyHome AI Project">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/.apt_generated"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/protobuf/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/protobuf/grpc-java"/>
+        <property name="java-output-path" value="/MyHome AI Project/target/classes"/>
+        <property name="context-root" value="/"/>
+    </wb-module>
+</project-modules>
