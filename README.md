@@ -14,3 +14,13 @@ echo는 skill을 개발하여 원하는 기능을 확장할 수 있지만 한글
 ### 시스템 구성도
 
 ![Alt text](/doc/images/system.jpg "System")
+
+
+### 스피커
+
+![Alt text](/doc/images/pic.jpg "Speaker")
+
+
+### IoT 디바이스
+
+![Alt text](/doc/images/ir.jpg "IR")
